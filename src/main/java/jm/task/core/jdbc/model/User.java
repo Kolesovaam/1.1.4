@@ -19,7 +19,16 @@ public class User {
     private Byte age;
 
     public User() {
+    }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public User(String name, String lastName, Byte age) {
@@ -28,8 +37,8 @@ public class User {
         this.age = age;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId(long id) {
+        return this.id;
     }
 
     public void setId(Long id) {
