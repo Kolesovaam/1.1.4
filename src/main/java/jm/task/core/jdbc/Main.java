@@ -10,28 +10,23 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // реализуйте алгоритм здесь
+        User[] users = {new User("Maria", "Kolesova", (byte) 19),
+                new User("German", "Glushkov", (byte) 13),
+                new User("Egor", "Vaskin", (byte) 22),
+                new User("Eva", "Milkanova", (byte) 32)};
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
+        for (User user : users) {
 
-        User user1 = new User("Maria", "Kolesova", (byte) 19);
-        User user2 = new User("Nikita", "Kotov", (byte) 23);
-        User user3 = new User("Sonya","Melnikova",(byte) 13);
-        User user4 = new User("Ivan", "Ivanov", (byte) 32);
+            userService.saveUser(user.getName(), user.getLastName(), user.getAge());
+            System.out.printf("User с именем – %s добавлен в базу данных\n", user.getName());
 
-        List<User> list = userService.getAllUsers();
-
-        for (User us : list) {
-            System.out.println(us);
         }
+        System.out.println("\n" + userService.getAllUsers());
 
         userService.cleanUsersTable();
         userService.dropUsersTable();
-
-
-
-
-
+        Util.shutdown();
 
     }
 }
