@@ -22,6 +22,9 @@ public class Util {
             "&amp" + "&serverTimezone=UTC";
     private static String dbUserName = "root";
     private static String password = "daTA256my!!";
+    private static String dbDriver = "com.mysql.jdbc.Driver";
+    private static String dbDialect = "org.hibernate.dialect.MySQLDialect";
+
 
     private static Connection connection = null;
     private static SessionFactory sessionFactory;
@@ -38,11 +41,11 @@ public class Util {
     public static SessionFactory getSessionFactory() {
         try {
             Configuration configuration = new Configuration()
-                    .setProperty("connection.driver_class","com.mysql.jdbc.Driver")
+                    .setProperty("connection.driver_class", dbDriver)
                     .setProperty("hibernate.connection.url",dbURL)
                     .setProperty("hibernate.connection.username", dbUserName)
                     .setProperty("hibernate.connection.password", password)
-                    .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
+                    .setProperty("hibernate.dialect", dbDialect)
                     .setProperty("hibernate.show_sql", "true")
                     .addAnnotatedClass(jm.task.core.jdbc.model.User.class);
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
